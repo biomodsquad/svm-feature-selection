@@ -481,8 +481,7 @@ class svmSet():
     def _find_boundary_points(self, model_index, X):
         boundary_points = np.zeros([len(X), self.cv.X.shape[1]])
         for i in range(0,len(X)):
-            xi = np.reshape(X[i,:], [1,self.cv.X.shape[1]])
-            opt = minimize(svc_dec2, xi, args=(self,model_index))
+            opt = minimize(svc_dec2, X[i,:], args=(self,model_index))
             boundary_points[i,:] = opt.x
             
         return boundary_points
